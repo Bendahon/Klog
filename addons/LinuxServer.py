@@ -15,7 +15,7 @@ class MessageHandle:
 
 
 def __get_ip__():
-    IPList = ["payment", "127.0.0.1", "localhost"]
+    IPList = ["127.0.0.1", "localhost"]
     return IPList
 
 

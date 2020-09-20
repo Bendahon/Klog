@@ -48,12 +48,14 @@ def write_pid():
 
 def time_to_smtp():
     global trigger_time
+    global buffer
     datetime_now = datetime.now()
     if datetime_now > trigger_time:
         print("TRIGGERED")
         trigger_time = datetime.now() + timedelta(minutes=int(ConfigBufferTimeMins))
         print(f"Set to trigger @ {trigger_time}")
         print(f"Now:           @ {datetime_now}")
+        buffer = []
 
 
 def start_server():
@@ -66,7 +68,7 @@ def start_server():
     trigger_time = trigger_time + timedelta(minutes=int(ConfigBufferTimeMins))
     print(f"Set to trigger Next @ {trigger_time}")
     while True:
-        #  Wait for next request from client
+        # TODO make sure we can find a way to clear the buffer after X minutes
         message = socket.recv()
         # add message to buffer
         buffer.append(message)
